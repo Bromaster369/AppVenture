@@ -3,8 +3,13 @@ class CreateExperiences < ActiveRecord::Migration[6.1]
     create_table :experiences do |t|
       t.string :title
       t.text :content
+      t.integer "user_id"
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.index ["title"], name: "index_experiences_on_title"
+      t.index ["user_id"], name: "index_experiences_on_user_id"
 
-      t.timestamps
+      
     end
   end
 end
