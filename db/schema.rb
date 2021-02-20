@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_233250) do
+ActiveRecord::Schema.define(version: 2021_02_18_190527) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -26,8 +32,10 @@ ActiveRecord::Schema.define(version: 2021_02_17_233250) do
     t.string "title"
     t.text "content"
     t.integer "user_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["title"], name: "index_experiences_on_title"
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end

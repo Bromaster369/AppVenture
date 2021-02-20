@@ -1,0 +1,21 @@
+<h1><%=@experience.title%></h1>
+<h2>By: <%=link_to @experience.user.username, user_path(@experience.user)%> </h2>
+
+
+<% if @experience.user == current_user %>
+<h4><%= link_to "Edit Experience", edit_experience_path(@experience)%></h4>
+<% end %>
+
+<div><%= @experience.content%></div>
+
+
+
+<% if !@experience.comments.empty? %>
+  <p><%= link_to 'See all comments', experience_comments_path(@experience)%></p>
+  <h4>Most Recent Comments:</h4>
+  <% @experience.comments.order(updated_at: :desc).limit(3).each do |c|%>
+    <li>
+      <strong><%= c.user.username%></strong> says "<%= link_to c.content, experience_comment_path(@experience,c)%>" at <%= c.updated_at.strftime("%I:%M %p on %m/%d/%Y") %>
+    </li>
+  <% end %>
+<% end %>
