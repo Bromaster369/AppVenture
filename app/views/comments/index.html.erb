@@ -1,0 +1,11 @@
+<% if @experience %>
+  <h1>Comments for <%= @experience.title%></h1>
+<% else %>
+  <h1>All Comments</h1>
+<% end %>
+
+<ul>
+<% @comments.each do |c|%>
+  <li><%= c.user.username%> says "<%= c.content%>" about this experience: <strong><%= link_to c.experience.title, experience_path(c.experience_id) %></strong></li>
+<% end %>
+</ul>
