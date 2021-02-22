@@ -5,7 +5,7 @@
 <% end %>
 
 
-
+<%= render partial: "layouts/errors", locals: {object: @comment} %>
 
 <%= form_for([@comment.experience,@comment]) do |f|%>
 
