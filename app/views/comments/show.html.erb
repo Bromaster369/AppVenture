@@ -1,0 +1,7 @@
+<h2><%= @comment.content%> - <%= @comment.user.username%></h2>
+
+<% if @comment.user == current_user %>
+  <%= link_to "Edit Comment", edit_comment_path(@comment)%>
+<% end %>
+
+<h4>Read the experience here: <%= link_to @comment.experience.title, experience_path(@comment.experience_id) %></h4>
