@@ -26,6 +26,12 @@ class ExperiencesController < ApplicationController
     end
   end
 
+  def edit 
+    @experience = Experience.find_by_id(params[:id])
+    redirect_to experiences_path if !@experience || @experience.user != current_user
+    @experience.build_category if !@experience.category
+  end 
+
   def show
     @experience = Experience.find_by_id(params[:id])
     redirect_to experiences_path if !@experience

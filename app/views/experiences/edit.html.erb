@@ -1,0 +1,27 @@
+<h1>Edit <%= @experience.title%>!</h1>
+
+<%= render partial: "layouts/errors", locals: {object: @experience} %>
+
+<%= form_for(@experience) do |f|%>
+
+  <%= f.label "Choose a category:" %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
+
+
+   <p>Or create a new category:
+  <%= f.fields_for :category do |c|%>
+    <%= c.text_field :name%>
+  <% end %>
+  </p>
+
+  <br>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br></br>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+
+  <%= f.submit %>
+
+<% end %>

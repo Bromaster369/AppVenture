@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   #logout route
   delete '/logout' => 'sessions#destroy'
+
+   #omniauth callback route
+
+ get "/auth/:provider/callback" => 'sessions#google'
   
   resources :experiences do 
     resources :comments
