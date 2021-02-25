@@ -12,7 +12,12 @@ class ExperiencesController < ApplicationController
   end
 
   def index
-    @experiences = Experience.all
+    if params[:user_id] && @user = User.find_by_id(params[:user_id])
+      @experiences = @user.experiences.alpha
+    else
+     @error = "That user doesn't exist" if params[:user_id]
+     @experiences = Experience.alpha.includes(:category, :user)
+    end 
   end 
 
   def create
