@@ -17,8 +17,9 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 
 gem 'omniauth'
-gem 'dotenv-rails'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
