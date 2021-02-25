@@ -1,4 +1,5 @@
 <h1>Welcome <%=@user.username %></h1>
 
+<%= display_experiences %>
 
 <%= render partial: "experiences/experiences", locals: {experiences: @user.experiences} %>

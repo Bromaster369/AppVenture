@@ -15,5 +15,6 @@ class Experience < ApplicationRecord
     def too_many_experiences
         today_experiences = user.experiencs.select do |e|
             e.created_at.try(:to_date) == Date.today
+        end 
     end 
 end
