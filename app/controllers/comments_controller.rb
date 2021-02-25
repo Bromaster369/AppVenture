@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
 
     before_action :redirect_if_not_logged_in
+    before_action :set_comment, only: [:show, :edit, :update]
+    before_action :redirect_if_not_comment_user, only: [:edit, :update]
 
     def index
         if params[:experience_id] && @experience = Experience.find_by_id(params[:experience_id])
@@ -12,7 +14,7 @@ class CommentsController < ApplicationController
     end 
 
     def new 
-        if params[:post_id] && @experience = Experience.find_by_id(params[:experience_id])
+        if params[:experience_id] && @experience = Experience.find_by_id(params[:experience_id])
             @comment = @experience.comments.build
           else
             @error = "That experience doesn't exist" if params[:experience_id]
@@ -44,4 +46,15 @@ class CommentsController < ApplicationController
         params.require(:comment).permit(:content,:experience_id)
     end 
 
+    def set_comment
+        @comment = Comment.find_by(id: params[:id])
+        if !@comment
+            flash[:message] = "Comment was not found"
+            redirect_to comments_path
+        end
+    end
+
+    def redirect_if_not_comment_user
+        redirect_to comments_path if @comment.user != current_user
+     end
 end
