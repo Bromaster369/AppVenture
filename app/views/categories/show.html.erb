@@ -1,0 +1,7 @@
+<h1><%= @category.name %> - <%= pluralize(@category.experiences.count, "experiences") %></h1>
+
+<ol>
+    <% @category.experiences.each do  |experience| %>
+      <li><%= link_to experiencetitle, experience_path(experience)  %></li>
+    <% end  %>
+</ol>
