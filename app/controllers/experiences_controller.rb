@@ -52,6 +52,18 @@ class ExperiencesController < ApplicationController
     redirect_to experiences_path if !@experience
   end
 
+  def destroy
+    if logged_in?
+      @experience = Experience.find_by_id(params[:id])
+      if @experience && @experience.user == current_user
+        @experience.delete
+      end
+      redirect_to experiences_path
+      else
+      redirect_to login_path
+      end 
+  end 
+
   private 
 
   def experience_params
